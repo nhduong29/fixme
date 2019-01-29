@@ -5,5 +5,6 @@
 	"to": "duong.nguyen@axonactive.com",
 	"subject" : "Your Subject",
 	"content" : "<p>Please help me check the Error bellow</p>",
+	"blackLists" : ["NullPointerException"],
 	"rows" : 100
 }

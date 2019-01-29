@@ -215,10 +215,10 @@ if (program.daemonize) {
   }
 
   function cathMe(lineNumber, data){
-    if (highlightConfig && highlightConfig.blackLists) {
+    if (mailConfig && mailConfig.blackLists) {
       //mailMe(data).catch(console.error);
-      for (var i in highlightConfig.blackLists) {
-          if (data.search(highlightConfig.blackLists[i]) >=0){
+      for (var i in mailConfig.blackLists) {
+          if (data.search(mailConfig.blackLists[i]) >=0){
             fromTo(lineNumber,lineNumber+mailConfig.rows,function(err, res) {
               if (err) console.error(err)	//handling error
               mailMe(res).catch(console.error);

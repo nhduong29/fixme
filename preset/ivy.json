@@ -10,6 +10,5 @@
   "lines": {
     "WARN": "font-style: italic;",
     "ERROR": "font-weight: bold;"
-  },
-  "blackLists" : ["NullPointerException"]
+  }
 }
