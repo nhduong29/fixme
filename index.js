@@ -199,7 +199,7 @@ if (program.daemonize) {
 
   async function mailMe(content){
     var htmlEmailContent = mailConfig.content;
-    htmlEmailContent =  htmlEmailContent + '<p>' +content+ '</p>';
+    htmlEmailContent =  htmlEmailContent + '<pre>' +content+ '</pre>';
     var mailOptions = {
       from: mailConfig.from, // sender address
       to: mailConfig.to, // list of receivers

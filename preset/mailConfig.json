@@ -1,10 +1,9 @@
 {
-	"userName" : "username@gmail.com",
-	"password" : "password",
-	"from": "fixme@gmail.com",
-	"to": "receiver@gmail.com",
+	"userName" : "aavn.fixme@gmail.com",
+	"password" : "fixme@123",
+	"from": "aavn.fixme@gmail.com",
+	"to": "duong.nguyen@axonactive.com",
 	"subject" : "Your Subject",
-	"content" : "'<p>Please help me check the Error bellow</p>'",
+	"content" : "<p>Please help me check the Error bellow</p>",
 	"rows" : 100
 }
-

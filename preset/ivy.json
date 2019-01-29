@@ -11,6 +11,5 @@
     "WARN": "font-style: italic;",
     "ERROR": "font-weight: bold;"
   },
-  "blackLists" : ["error","NullPointerException"]
+  "blackLists" : ["NullPointerException"]
 }
-
