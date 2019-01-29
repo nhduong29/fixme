@@ -1,6 +1,7 @@
 # Description
 
 Stream the log file
+
 Check the error and send the email to receiver
 
 ## Installation
