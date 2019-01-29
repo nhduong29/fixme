@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fixme</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="/bootstrap-v4/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="/line-awesome/css/line-awesome.css">
+    <!-- Scrollbar Custom CSS -->
+    <link rel="stylesheet" href="/vendor/jquery.mCustomScrollbar.min.css">
+    <link rel="icon" href="/favicon.ico">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,700" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/styles/style.css">
+</head>
+<body>
+    <div class="wrapper">
+        <nav class="navbar navbar-dark bg-primary justify-content-between">
+            <span class="navbar-brand" title="__TITLE__">tail -f __TITLE__</span>
+            <form class="navbar-form-custom" role="search" onkeypress="return event.keyCode != 13;">
+                <input type="text" class="form-control query" placeholder="Filter" tabindex="1">
+            </form>
+          </nav>
+
+        <div id="content">
+            <pre class="log"></pre>
+        </div>
+    </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/tinycon.min.js"></script>
+    <script src="/ansi_up.js"></script>
+    <script src="/app.js"></script>
+    <script type="text/javascript">
+        var socket = new io.connect('/' + '__NAMESPACE__');
+        window.load = App.init({
+            socket: socket,
+            container: document.getElementsByClassName('log')[0],
+            filterInput: document.getElementsByClassName('query')[0],
+            topbar: document.getElementsByClassName('topbar')[0],
+            body: document.getElementsByTagName('body')[0]
+        }); 
+    </script>
+</body>
+</html>
