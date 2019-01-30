@@ -4,6 +4,11 @@ Stream the log file
 
 Check the error and send the email to receiver
 
+## Require
+1. NodeJS
+
+2. GITBASH on Windown || Linux
+
 ## Installation
 
 Install gitbash if you are using window ;).
