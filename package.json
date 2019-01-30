@@ -1,8 +1,8 @@
 {
-  "name": "boomerang",
+  "name": "fixme",
   "version": "1.0.0",
-  "description": "streaming logs to the browser",
-  "homepage": "https://github.com/nhduong29/boomerang",
+  "description": "Streaming logs to the browser",
+  "homepage": "https://github.com/nhduong29/fixme",
   "author": "Duong Nguyen <nhduong29@gmail.com>",
   "license": "MIT",
   "dependencies": {
@@ -34,7 +34,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nhduong29/boomerang.git"
+    "url": "git+https://github.com/nhduong29/fixme.git"
   },
   "keywords": [
     "tail",
@@ -48,7 +48,7 @@
   "main": "index",
   "preferGlobal": true,
   "bugs": {
-    "url": "https://github.com/nhduong29/boomerang/issues"
+    "url": "https://github.com/nhduong29/fixme/issues"
   },
   "directories": {
     "lib": "lib",
@@ -56,7 +56,7 @@
   },
   "scripts": {
     "preinstall": "npm i -g forever",
-    "start": "node index.js --port=9004 log/debug.log -s sandbox-lib -x 9003"
+    "start": "node index.js --port=9002 log/debug.log --ui-highlight"
   },
   "engines": {
     "node": "8.9.4"
