@@ -1,7 +1,7 @@
 .log {
   white-space: pre-wrap;
   color: #7f8289;
-  font-size: 0.85em;
+  font-size: 16px;
   background: inherit;
   border: 0;
   padding: 0;
@@ -26,4 +26,5 @@
 
 .log .line-selected {
   background-color: #302436;
+  color: white;
 }

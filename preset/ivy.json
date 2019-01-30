@@ -5,7 +5,7 @@
     "http": "color: green; background-color: black;",
     "WARN": "color: black; background-color: yellow; font-style: normal;",
     "error": "color: red;",
-    "ERROR": "color: red; background-color: black;"
+    "ERROR": "color: white; background-color: red;"
   },
   "lines": {
     "WARN": "font-style: italic;",
