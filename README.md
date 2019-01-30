@@ -21,6 +21,9 @@ Run application
 ```bash
 node index.js --port=9002 log/debug.log --ui-highlight
 ```
+`log/debug.log` is the log file you want to stream.
+
+Open browser: localhost:9002
 
 ## Email config
 Edit the file `preset/mailConfig.json`
