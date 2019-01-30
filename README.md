@@ -29,6 +29,7 @@ Open browser: localhost:9002
 
 ## Email config
 Edit the file `preset/mailConfig.json`
+
 `userName` : a gmail account `aavn.fixme@gmail.com`
 
 `password` : "emailPassW" 
