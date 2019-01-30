@@ -164,6 +164,8 @@ if (program.daemonize) {
     buffer: program.number,
   });
 
+  let eableEmailFeature = program.mail > 0;
+
   let lineNumber = linesNumberOfLogFileAtFirstTime - program.number;
   lineNumber =  lineNumber > 0 ? lineNumber : 0 ;
 
@@ -216,7 +218,6 @@ if (program.daemonize) {
 
   function cathMe(lineNumber, data){
     if (mailConfig && mailConfig.blackLists) {
-      //mailMe(data).catch(console.error);
       for (var i in mailConfig.blackLists) {
           if (data.search(mailConfig.blackLists[i]) >=0){
             fromTo(lineNumber,lineNumber+mailConfig.rows,function(err, res) {
@@ -234,7 +235,9 @@ if (program.daemonize) {
   tailer.on(EVENT_READ_LINE, (line) => {
     lineNumber ++;
     filesSocket.emit(EVENT_READ_LINE, line);
-    cathMe(lineNumber,line);
+    if(eableEmailFeature){
+      cathMe(lineNumber,line);
+    }
   });
 
   /**

@@ -19,9 +19,11 @@ npm  install
 
 Run application
 ```bash
-node index.js --port=9002 log/debug.log --ui-highlight
+node index.js --port=9002 log/debug.log --ui-highlight --mail 1
 ```
 `log/debug.log` is the log file you want to stream.
+
+`--mail` is the param to enable or disable email feature. Set `0` to diable email feature, set the number > 1 to eable.
 
 Open browser: localhost:9002
 
