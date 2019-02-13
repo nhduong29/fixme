@@ -114,8 +114,10 @@ if (program.daemonize) {
     }
   }
 
-  
-  let linesNumberOfLogFileAtFirstTime = fs.readFileSync(program.args.toString()).toString().split('\n').length - 1 || 0;
+  let linesNumberOfLogFileAtFirstTime = 0;
+  if (fs.existsSync(program.args.toString())) {
+    linesNumberOfLogFileAtFirstTime = fs.readFileSync(program.args.toString()).toString().split('\n').length - 1 || 0;
+  }
   
   function fromTo(start,end, callback) {
     var path = program.args.toString();
@@ -238,6 +240,11 @@ if (program.daemonize) {
     if(eableEmailFeature){
       cathMe(lineNumber,line);
     }
+  });
+
+  tailer.on('file_truncated', () => {
+    linesNumberOfLogFileAtFirstTime = 0;
+    lineNumber = 0 ;
   });
 
   /**
