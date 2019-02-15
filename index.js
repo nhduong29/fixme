@@ -115,8 +115,9 @@ if (program.daemonize) {
   }
 
   let linesNumberOfLogFileAtFirstTime = 0;
+  let realPath = path.resolve(untildify(program.args.toString()));
   if (fs.existsSync(program.args.toString())) {
-    linesNumberOfLogFileAtFirstTime = fs.readFileSync(program.args.toString()).toString().split('\n').length - 1 || 0;
+    linesNumberOfLogFileAtFirstTime = fs.readFileSync(realPath).toString().split('\n').length - 1 || 0;
   }
   
   function fromTo(start,end, callback) {
