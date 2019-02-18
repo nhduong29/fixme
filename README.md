@@ -47,6 +47,29 @@ Edit the file `preset/mailConfig.json`
 ## Log hightlight config
 Edit the file `preset/ivy.json`
 
+## Make a application run permanently
+Install forever using npm like this:
+```bash
+sudo npm install -g forever
+```
+Then start your application with:
+```bash
+cd sandbox-tail
+forever start index.js --port=9002  /opt/ivy_engine/AxonIvyEngine7.0.3_CreditHighway_T/logs/ch.ivyteam.ivy.log --ui-highlight --mail 1
+```
+To list all running processes:
+```bash
+forever list
+```
+Note the integer in the brackets and use it as following to stop a process:
+```bash
+forever stop 0
+```
+Restarting a running process goes:
+```bash
+forever restart 0
+```
+
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
