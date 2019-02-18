@@ -6,7 +6,7 @@
 	"subject" : "Your Subject",
 	"content" : "<p>Please help me check the Error bellow</p>",
 	"blackLists" : ["NullPointerException"],
-	"slackAccessToken" : "xoxb-24313179575-551901926226-svP67awd6E71QZJGIAKswzgj",
+	"slackAccessToken" : "",
 	"slackChannel" : "sms_otp_finform",
 	"rows" : 100
 }
