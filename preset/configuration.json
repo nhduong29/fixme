@@ -2,9 +2,11 @@
 	"userName" : "aavn.fixme@gmail.com",
 	"password" : "fixme@123",
 	"from": "aavn.fixme@gmail.com",
-	"to": "receiver@gmail.com",
+	"to": "tien.truong@axonactive.com",
 	"subject" : "Your Subject",
 	"content" : "<p>Please help me check the Error bellow</p>",
 	"blackLists" : ["NullPointerException"],
+	"slackAccessToken" : "xoxb-24313179575-551901926226-svP67awd6E71QZJGIAKswzgj",
+	"slackChannel" : "sms_otp_finform",
 	"rows" : 100
 }

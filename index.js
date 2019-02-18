@@ -114,12 +114,8 @@ if (program.daemonize) {
     }
   }
 
-  let linesNumberOfLogFileAtFirstTime = 0;
-  let realPath = path.resolve(untildify(program.args.toString()));
-  if (fs.existsSync(program.args.toString())) {
-    linesNumberOfLogFileAtFirstTime = fs.readFileSync(realPath).toString().split('\n').length - 1 || 0;
-  }
   
+  let linesNumberOfLogFileAtFirstTime = fs.readFileSync(program.args.toString()).toString().split('\n').length;
   function fromTo(start,end, callback) {
     var path = program.args.toString();
     var i = 0;
@@ -137,7 +133,7 @@ if (program.daemonize) {
         input: rs,
         terminal: false
       }).on('line', function(line) {
-        ++i;
+        i++;
         if (i >= start && i<= end) {
           try {
               content = content + "\n" + line;
@@ -170,8 +166,8 @@ if (program.daemonize) {
   let eableEmailFeature = program.mail > 0;
 
   let lineNumber = linesNumberOfLogFileAtFirstTime - program.number;
-  lineNumber =  lineNumber > 0 ? lineNumber : 0 ;
-
+  lineNumber =  lineNumber > 0 ? lineNumber : 1 ;
+  
   const filesSocket = io.of(`/${filesNamespace}`).on('connection', (socket) => {
     socket.emit(EVENT_OPTION_LINE, program.lines);
     if (program.uiHideTopbar) {
@@ -192,23 +188,23 @@ if (program.daemonize) {
 
   });
 
-  let mailConfig = JSON.parse(fs.readFileSync(path.join(__dirname, 'preset/mailConfig.json')));
+  let configuration = JSON.parse(fs.readFileSync(path.join(__dirname, 'preset/configuration.json')));
 
   let transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-           user: mailConfig.userName,
-           pass: mailConfig.password
+           user: configuration.userName,
+           pass: configuration.password
        }
    });
 
   async function mailMe(content){
-    var htmlEmailContent = mailConfig.content;
+    var htmlEmailContent = configuration.content;
     htmlEmailContent =  htmlEmailContent + '<pre>' +content+ '</pre>';
     var mailOptions = {
-      from: mailConfig.from, // sender address
-      to: mailConfig.to, // list of receivers
-      subject: mailConfig.subject, // Subject line
+      from: configuration.from, // sender address
+      to: configuration.to, // list of receivers
+      subject: configuration.subject, // Subject line
       html: htmlEmailContent // plain text body
     };
     transporter.sendMail(mailOptions, function (err, info) {
@@ -216,36 +212,76 @@ if (program.daemonize) {
         console.log(err)
       else
         console.log(info);
-   });
+    });
+  }
+
+  var request = require('request');
+  
+  function createFile(content, lineNumber){
+	var stream = fs.createWriteStream("bug"+lineNumber+".log");
+	stream.once('open', function(fd) {
+		stream.write(content);
+		stream.end();
+	});
+	stream.on('finish', function(){
+		request.post({
+			url: 'https://slack.com/api/files.upload',
+			formData: {
+				file: fs.createReadStream("bug"+lineNumber+".log"),
+				token: configuration.slackAccessToken,
+				filetype: 'log',
+				filename: "bug"+lineNumber+".log",
+				channels: configuration.slackChannel,
+				title: new Date().toUTCString(),
+			},
+		}, function(error, response, body) {
+			fs.unlink("bug"+lineNumber+".log", function(error) {
+				console.log(error);
+			});			
+		});		
+	});
+    
   }
 
   function cathMe(lineNumber, data){
-    if (mailConfig && mailConfig.blackLists) {
-      for (var i in mailConfig.blackLists) {
-          if (data.search(mailConfig.blackLists[i]) >=0){
-            fromTo(lineNumber,lineNumber+mailConfig.rows,function(err, res) {
+    if (configuration && configuration.blackLists) {
+      for (var i in configuration.blackLists) {
+          if (data.search(configuration.blackLists[i]) >=0){
+            fromTo(lineNumber,lineNumber+configuration.rows,function(err, res) {			  
               if (err) console.error(err)	//handling error
-              mailMe(res).catch(console.error);
+              mailMe(res).catch(console.error);			  
             })
           }
       }
     }
   }
+  
+  function postToSlack(lineNumber, data){
+    if (configuration && configuration.blackLists) {
+      for (var i in configuration.blackLists) {
+          if (data.search(configuration.blackLists[i]) >= 0){
+            fromTo(lineNumber,lineNumber+configuration.rows,function(err, res) {
+              if (err) console.error(err)	//handling error
+              createFile(res, lineNumber);
+            })
+          }
+      }
+    }
+  }
+  
+  
+  
 
   /**
    * Send incoming data
    */
   tailer.on(EVENT_READ_LINE, (line) => {
-    lineNumber ++;
     filesSocket.emit(EVENT_READ_LINE, line);
     if(eableEmailFeature){
       cathMe(lineNumber,line);
     }
-  });
-
-  tailer.on('file_truncated', () => {
-    linesNumberOfLogFileAtFirstTime = 0;
-    lineNumber = 0 ;
+	postToSlack(lineNumber,line);
+	lineNumber ++;
   });
 
   /**
@@ -256,4 +292,6 @@ if (program.daemonize) {
   };
   process.on('SIGINT', cleanExit);
   process.on('SIGTERM', cleanExit);
+  
+	
 }

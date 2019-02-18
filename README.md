@@ -28,7 +28,7 @@ node index.js --port=9002 log/debug.log --ui-highlight --mail 1
 Open browser: localhost:9002
 
 ## Email config
-Edit the file `preset/mailConfig.json`
+Edit the file `preset/configuration.json`
 
 `userName` : a gmail account `aavn.fixme@gmail.com`
 
