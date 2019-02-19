@@ -46,7 +46,7 @@ Edit the file `preset/configuration.json`
 
 `blackLists` : `Array` the keyword that you want to cath on log file eg: ["error","NullPointerException"]
 
-`slackAccessToken` : `XXX` slack bot access token of the selected slack bot on your slack workspace, you can find one active bot here https://aavn-fintech.slack.com/services/BG7QT9D44
+`slackAccessToken` : `XXX` slack bot access token of the selected slack bot on your slack workspace, you can find one active bot here https://aavn-fintech.slack.com/services/BG7QT9D44. Only one key is valid at a moment, please let others know if you want to regenerate the key.
 
 `slackChannel` : `Channel name` where the log is treamed to
 
