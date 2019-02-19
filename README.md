@@ -25,6 +25,8 @@ node index.js --port=9002 log/debug.log --ui-highlight --mail 1
 
 `--mail` is the param to enable or disable email feature. Set `0` to disable email feature, set the number > 1 to eable.
 
+`--slack` is used to enable or disable post error to slack feature. Set `0` to disable email feature, set the number > 1 to eable.
+
 Open browser: localhost:9002
 
 ## Email config
@@ -42,7 +44,11 @@ Edit the file `preset/configuration.json`
 
 `rows` : `Number` the number of rows you want to get from log file
 
-`blackLists` : `Array` the key words you want to cath on log file eg: ["error","NullPointerException"]
+`blackLists` : `Array` the keyword that you want to cath on log file eg: ["error","NullPointerException"]
+
+`slackAccessToken` : `XXX` slack bot access token of the selected slack bot on your slack workspace
+
+`slackChannel` : `Channel name` where the log is treamed to
 
 ## Log hightlight config
 Edit the file `preset/ivy.json`
