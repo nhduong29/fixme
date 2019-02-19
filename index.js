@@ -164,6 +164,7 @@ if (program.daemonize) {
   });
 
   let eableEmailFeature = program.mail > 0;
+  let postErrorLogToSlack = program.slack > 0;
 
   let lineNumber = linesNumberOfLogFileAtFirstTime - program.number;
   lineNumber =  lineNumber > 0 ? lineNumber : 1 ;
@@ -279,8 +280,10 @@ if (program.daemonize) {
     filesSocket.emit(EVENT_READ_LINE, line);
     if(eableEmailFeature){
       cathMe(lineNumber,line);
-    }
-	postToSlack(lineNumber,line);
+    }	
+	if(postErrorLogToSlack) {
+		postToSlack(lineNumber,line);
+	}	
 	lineNumber ++;
   });
 
