@@ -7,6 +7,6 @@
 	"content" : "<p>Please help me check the Error bellow</p>",
 	"blackLists" : ["NullPointerException"],
 	"slackAccessToken" : "",
-	"slackChannel" : "sms_otp_finform",
-	"rows" : 100
+	"slackChannel" : "",
+	"rows" : 50
 }
