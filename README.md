@@ -19,7 +19,7 @@ npm  install
 
 Run application
 ```bash
-node index.js --port=9002 log/debug.log --ui-highlight --mail 1
+node index.js --port=9002 log/debug.log --ui-highlight --mail 1 --slack 1
 ```
 `log/debug.log` is the log file you want to stream.
 
