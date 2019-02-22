@@ -42,13 +42,13 @@ Edit the file `preset/configuration.json`
 
 `content` : email content
 
-`rows` : `Number` the number of rows you want to get from log file
+`rows` : `Number` the number of rows you want to get from log file, at the moment it is only possible to extract less than 50 lines at a time, we will enhance it in the future.
 
 `blackLists` : `Array` the keyword that you want to cath on log file eg: ["error","NullPointerException"]
 
-`slackAccessToken` : `XXX` slack bot access token of the selected slack bot on your slack workspace, you can find one active bot here https://aavn-fintech.slack.com/services/BG7QT9D44. Only one key is valid at a moment, please let others know if you want to regenerate the key.
+`slackAccessToken` : `XXX` slack bot access token of the selected slack bot on your slack workspace, you can find one active bot here https://aavn-fintech.slack.com/services/BG7QT9D44. Only one key is valid at a moment and only the creator of the bot can see the key, please contact team Infinity to get the key or create the bot yourself.
 
-`slackChannel` : `Channel name` where the log is treamed to
+`slackChannel` : `Channel name` where the log is treamed to, please make sure that the channel is not private since bot only has access to public channels
 
 ## Log hightlight config
 Edit the file `preset/ivy.json`
