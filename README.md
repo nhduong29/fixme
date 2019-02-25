@@ -53,7 +53,7 @@ Edit the file `preset/configuration.json`
 ## Log hightlight config
 Edit the file `preset/ivy.json`
 
-## Make a application run permanently
+## Make a application run permanently (ONLY FOR LINUX SYSTEM)
 Install forever using npm like this:
 ```bash
 sudo npm install -g forever
